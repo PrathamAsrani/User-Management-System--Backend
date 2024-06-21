@@ -3,9 +3,9 @@ package main
 import (
 	"fmt"
 	"net/http"
-
 	"github.com/julienschmidt/httprouter"
 	"gopkg.in/mgo.v2"
+	"github.com/PrathamAsrani/User-Management-System--Backend/controllers"
 )
 
 func main() {
@@ -22,7 +22,8 @@ func main() {
 	router.POST("/user", userController.CreateUser)
 	router.DELETE("/user/:id", userController.DeleteUser)
 
-	http.ListenAndServe("localhost:8080")
+	// server connect
+	http.ListenAndServe("localhost:8080", router)
 }
 
 func getSession() *mgo.Session {
