@@ -1,12 +1,9 @@
 package modals
 
-import (
-	"gopkg.in/mgo.v2/bson"
-)
+import "gopkg.in/mgo.v2/bson"
 
-type user struct {
-	id     bson.ObjectId
-	name   string
-	gender string
-	age    int
+type UserModal struct {
+	Id    bson.ObjectId `bson:"_id,omitempty" json:"id"`
+	Name  string        `json:"name"`
+	Email string        `json:"email"`
 }
