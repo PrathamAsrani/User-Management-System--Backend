@@ -24,7 +24,7 @@ func (userController UserController) GetUser (wr http.ResponseWriter, re http.Re
 		wr.WriteHeader(http.StatusNotFound)
 	}
 	userId := bson.ObjectIdHex(id);
-	user := modals.User{}
+	user := modals.userModal{}
 	if err := userController.Session.DB("EMP").C("Users").FindId(userId).One(&user); err != nil {
 		wr.WriteHeader(http.StatusNotFound)
 		return 
@@ -40,7 +40,7 @@ func (userController UserController) GetUser (wr http.ResponseWriter, re http.Re
 
 
 func (userController UserController) CreateUser (wr http.ResponseWriter, re http.Request, _ httprouter.Params){
-	user := modals.User{}
+	user := modals.userModal{}
 	json.NewDecoder(re.Body).Decode(&user);
 	user.Id = bson.NewObjectId();
 	userController.session.DB("EMP").C("Users").Insert(user);
